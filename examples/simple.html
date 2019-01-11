@@ -1,0 +1,24 @@
+<p class="autoRow-template autoRow-template-original" style="display: none;">
+    <select>
+        <option>Select a product</option>
+        <option>Sunglasses</option>
+        <option>Headphones</option>
+        <option>Socks</option>
+        <option>Watch</option>
+    </select>
+    <input type="number" value="1" placeholder="Quantity"/> 
+    <img src="remove.png" width="18px" style="vertical-align: sub; cursor: pointer;" class="autoRow-remove"></img>
+</p>
+
+<div id="products">
+
+</div>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script language="javascript" type="text/javascript" src="..\src\otoro.js"></script>
+<script language="javascript" type="text/javascript">
+        $(function () {
+            otoro().init(".autoRow-template", "#products");
+        });
+</script>
+

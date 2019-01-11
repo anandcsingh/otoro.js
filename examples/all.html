@@ -1,0 +1,46 @@
+<p class="autoRow-template autoRow-template-original" style="display: none;">
+    <select data-name="name">
+        <option>Select a product</option>
+        <option>Sunglasses</option>
+        <option>Headphones</option>
+        <option>Socks</option>
+        <option>Watch</option>
+    </select>
+    <input type="number" value="1" placeholder="Quantity" data-name="quantity"/> 
+    <img src="remove.png" width="18px" style="vertical-align: sub; cursor: pointer;" class="autoRow-remove"></img>
+</p>
+<h2>Products</h2>
+<h4><span id="add-count">0</span> products Added, <span id="del-count">0</span> products deleted.</h4>
+<div id="products">
+
+</div>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script language="javascript" type="text/javascript" src="..\src\otoro.js"></script>
+<script language="javascript" type="text/javascript">
+        $(function () {
+
+            var elementNamer = function(item, index) {
+                var controls = $(item).find("input, select");
+
+                for (var i = 0; i < controls.length; i++) {
+                    var control = $(controls[i]);
+                    control.attr("name", "products[" + index + "]." + control.attr('data-name'));
+                }
+            };
+
+            var rowAdded = function (row, container) {
+                var count = parseInt($("#add-count").html());
+                $("#add-count").html(++count);
+            };
+
+            var rowDeleted = function (row, container) {
+                var count = parseInt($("#del-count").html());
+                $("#del-count").html(++count);
+            };
+
+            var data = [{ name: "Sunglasses", quantity: 2 }, { name: "Sunglasses", quantity: 1 }, { name: "Socks", quantity: 2 }];
+            otoro().init(".autoRow-template", "#products", elementNamer, rowAdded, rowDeleted, data);
+        });
+</script>
+
