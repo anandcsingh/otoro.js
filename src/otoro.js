@@ -18,7 +18,7 @@ var otoro = function () {
             makeLast(event);
         });
         containerElement.append(clone);
-        clone.css("display", "block");
+        clone.css("display", "");//block
     }
     function makeLast(event, data) {
         var row = $(event.target).closest(templateClass);
@@ -79,6 +79,25 @@ var otoro = function () {
                     makeLast(evt, seedData[i]);
                 }
             }
+        },
+
+        data: function (container) {
+            var rowsList = $(container).find(".autoRow-template").not('.autoRow-temp-row');
+            var data = [];
+            for (var i = 0; i < rowsList.length; i++) {
+                var rowControls = $(rowsList[i]).find("input,select");
+                var rowItem = {};
+                for (var j = 0; j < rowControls.length; j++) {
+                    var control = $(rowControls[j]);
+                    var name = control.attr('data-name');
+                    rowItem[name] = control.val();
+                }
+
+                data.push(rowItem);
+
+            }
+            return data;
+            
         }
     };
 };
